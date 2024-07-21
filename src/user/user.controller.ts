@@ -13,8 +13,4 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  /*   @Get(':id')
-    findOne(@Param('id') id: string) {
-      return this.userService.findOne(+id);
-    } */
 }

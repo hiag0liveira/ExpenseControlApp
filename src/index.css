@@ -1,68 +1,41 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  body {
+    @apply text-sm;
   }
-  a:hover {
-    color: #747bff;
+
+  td {
+    @apply capitalize text-white/70;
   }
-  button {
-    background-color: #f9f9f9;
+
+  thead td {
+    @apply text-white;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply flex items-center gap-2 rounded-md px-4 py-2 text-white;
+  }
+
+  input {
+    @apply rounded-md border border-slate-800 bg-slate-700 bg-transparent p-2 outline-none placeholder:text-white focus:border-slate-300;
+  }
+
+  .container {
+    @apply max-w-[1600px];
+  }
+}
+
+@layer utilities {
+  .btn-red {
+    @apply bg-rose-900 hover:bg-rose-800;
+  }
+
+  .btn-green {
+    @apply bg-green-600 hover:bg-green-800;
   }
 }

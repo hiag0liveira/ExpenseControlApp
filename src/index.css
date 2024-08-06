@@ -39,3 +39,13 @@
     @apply bg-green-600 hover:bg-green-800;
   }
 }
+
+@layer components {
+  .select {
+    @apply bg-slate-800 text-white border-none rounded p-2 appearance-none;
+  }
+
+  .select-option {
+    @apply bg-slate-800 text-white;
+  }
+}

@@ -18,7 +18,7 @@
 
 @layer components {
   .btn {
-    @apply flex items-center gap-2 rounded-md px-4 py-2 text-white;
+    @apply flex items-center gap-2 rounded-md px-4 py-2 text-white disabled:cursor-not-allowed disabled:bg-gray-400 disabled:hover:bg-gray-400;
   }
 
   .input {

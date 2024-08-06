@@ -17,13 +17,13 @@ export class CategoryController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard, AuthorGuard)
+  @UseGuards(JwtAuthGuard)
   findAll(@Req() req) {
     return this.categoryService.findAll(+req.user.id);
   }
 
   @Get(':type/:id')
-  @UseGuards(JwtAuthGuard, AuthorGuard)
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.categoryService.findOne(+id);
   }

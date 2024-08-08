@@ -6,12 +6,20 @@ import { useAppDispatch } from '../store/hooks'
 import { logout } from '../store/user/userSlice'
 import { removeTokenFromLocalStorage } from '../helpers/localStorage.helper'
 import { toast } from 'react-toastify'
+import { MdOutlineAssignmentInd } from 'react-icons/md'
 
 const Header: FC = () => {
 	const isAuth = useAuth()
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
+	const handleLoginClick = () => {
+		navigate('/auth?mode=login')
+	}
+
+	const handleSignInClick = () => {
+		navigate('/auth?mode=register')
+	}
 	const logoutHandler = () => {
 		dispatch(logout())
 		removeTokenFromLocalStorage('token')
@@ -69,12 +77,16 @@ const Header: FC = () => {
 					<FaSignOutAlt />
 				</button>
 			) : (
-				<Link
-					className="ml-auto py-2 text-white/50 hover:text-white"
-					to={'auth'}
-				>
-					Log In / Sign In
-				</Link>
+				<div className="ml-auto py-2 text-white/50  flex items-center gap-4">
+					<MdOutlineAssignmentInd size={33} />
+					<button className="hover:text-white" onClick={handleLoginClick}>
+						Log In
+					</button>
+					<span>/</span>
+					<button className="hover:text-white" onClick={handleSignInClick}>
+						Sign In
+					</button>
+				</div>
 			)}
 		</header>
 	)

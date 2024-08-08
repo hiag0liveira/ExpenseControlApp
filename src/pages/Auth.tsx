@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { AuthService } from '../services/auth.service'
 import { toast } from 'react-toastify'
 import { setTokenToLocalStorage } from '../helpers/localStorage.helper'
@@ -13,6 +13,13 @@ const Auth: FC = () => {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
+	useEffect(() => {
+		// Update `isLogin` state based on URL query parameter
+		const query = new URLSearchParams(location.search)
+		const mode = query.get('mode')
+		setIsLogin(mode === 'login')
+	}, [location.search])
+
 	const loginHandler = async (e: React.FormEvent<HTMLFormElement>) => {
 		try {
 			e.preventDefault()
@@ -22,6 +29,7 @@ const Auth: FC = () => {
 				dispatch(login(data))
 				toast.success('You logged id.')
 				navigate('/')
+				window.location.reload()
 			}
 		} catch (err: any) {
 			const error = err.response?.data.message

@@ -14,10 +14,10 @@ interface IData {
 }
 
 const Chart: FC<IChart> = ({ totalExpense, totalIncome }) => {
-	const data = new Array<IData>(
+	const data: IData[] = [
 		{ name: 'Income', value: totalIncome },
 		{ name: 'Expense', value: totalExpense },
-	)
+	]
 	return (
 		<PieChart width={240} height={240}>
 			<Pie
@@ -30,7 +30,7 @@ const Chart: FC<IChart> = ({ totalExpense, totalIncome }) => {
 				paddingAngle={2}
 				dataKey="value"
 			>
-				{data.map((entry, index) => (
+				{data.map((_, index) => (
 					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
 				))}
 			</Pie>

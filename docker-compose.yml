@@ -1,0 +1,62 @@
+services:
+  pgsql:
+    image: postgres:alpine
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    container_name: ${POSTGRES_HOST}
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - iff
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    container_name: aws_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "8080:80"
+    networks:
+      - iff
+
+  api:
+    container_name: api-expenseControl
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      pgsql:
+        condition: service_healthy
+    networks:
+      - iff
+
+  react:
+    container_name: react-expenseControl
+    build: ./frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    networks:
+      - iff
+
+volumes:
+  pg-data:
+
+networks:
+  iff:

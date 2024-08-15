@@ -2,6 +2,14 @@
 
 Este projeto é uma aplicação de controle de despesas, composta por um backend em Node.js, frontend em React, e um banco de dados PostgreSQL, orquestrados via Docker Compose.
 
+## Clonando o repositório
+
+Para começar, clone o repositório em sua máquina local:
+
+```bash
+git clone https://github.com/hiag0liveira/ExpenseControlApp.git
+```
+
 ## Pré-requisitos
 
 Certifique-se de ter o seguinte instalado em sua máquina:
@@ -15,17 +23,11 @@ Certifique-se de ter o seguinte instalado em sua máquina:
    ```env
    JWT_SECRET=sua_chave_secreta
 
-   DB_HOST=seu_host_db
-   DB_PORT=sua_porta_db
-   DB_USERNAME=seu_usuario_db
-   DB_PASSWORD=sua_senha_db
-   DB_NAME=nome_do_banco
-
    POSTGRES_PORT=5432
    POSTGRES_HOST=pgsql
    POSTGRES_USER=seu_usuario_postgres
    POSTGRES_PASSWORD=sua_senha_postgres
-   POSTGRES_DB=nome_do_banco_postgres
+   POSTGRES_DB=pgsql
 
    PGADMIN_USER=seu_email@dominio.com
    PGADMIN_PASSWORD=sua_senha_pgadmin

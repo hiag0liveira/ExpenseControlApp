@@ -28,6 +28,9 @@ import { ExchangeRateModule } from './exchangeRate/exchangeRate.module';
         database: configService.get('POSTGRES_DB_AWS'),
         synchronize: true,
         entities: [__dirname + '/**/*.entity{.js, .ts}'],
+        ssl: {
+            rejectUnauthorized: false,
+        },
       }),
       inject: [ConfigService],
     }),
